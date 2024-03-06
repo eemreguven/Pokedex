@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginHorizontal="40dp"
-        android:layout_marginVertical="80dp"
+        android:layout_marginVertical="40dp"
         android:backgroundTint="@color/white"
         android:elevation="10dp"
         app:cardCornerRadius="8dp"
@@ -51,7 +51,7 @@
                 android:id="@+id/heightText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="16dp"
                 android:textColor="@color/grey"
                 android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -64,23 +64,20 @@
                 android:id="@+id/weightText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
                 android:textColor="@color/black"
                 android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.75"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/nameText"
+                app:layout_constraintTop_toTopOf="@id/heightText"
                 tools:text="22.5KG" />
 
             <TextView
                 android:id="@+id/heightConstantText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
                 android:text="@string/height"
                 android:textColor="@color/light_grey"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@id/heightText"
                 app:layout_constraintStart_toStartOf="@id/heightText"
                 app:layout_constraintTop_toBottomOf="@id/heightText" />
@@ -89,13 +86,22 @@
                 android:id="@+id/weightConstantText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
                 android:text="@string/weight"
                 android:textColor="@color/light_grey"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@id/weightText"
                 app:layout_constraintStart_toStartOf="@id/weightText"
                 app:layout_constraintTop_toBottomOf="@id/weightText" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/typesRecyclerView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/heightConstantText" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

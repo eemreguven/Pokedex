@@ -6,8 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.mrguven.pokedex.databinding.FragmentPokemonDetailBinding
+import com.mrguven.pokedex.ui.adapter.TypeRecyclerAdapter
 import com.mrguven.pokedex.ui.viewmodel.PokemonDetailViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -17,6 +19,7 @@ class PokemonDetailFragment : Fragment() {
 
     private val viewModel by viewModels<PokemonDetailViewModel>()
     private lateinit var binding: FragmentPokemonDetailBinding
+    private lateinit var adapter: TypeRecyclerAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,6 +47,12 @@ class PokemonDetailFragment : Fragment() {
                 binding.heightText.text = heightText
                 val weightText = "${it.weight!!.toFloat() / 10.0}KG"
                 binding.weightText.text = weightText
+
+                val types = it?.types?.map { type -> type.type?.name ?: "" } ?: emptyList()
+                val recyclerAdapter = TypeRecyclerAdapter(types)
+                binding.typesRecyclerView.adapter = recyclerAdapter
+                binding.typesRecyclerView.layoutManager =
+                    LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             }
             loadingState.observe(viewLifecycleOwner) {
                 binding.loadingStateIndicator.visibility = if (it) View.VISIBLE else View.GONE
@@ -51,4 +60,6 @@ class PokemonDetailFragment : Fragment() {
             }
         }
     }
+
+
 }
