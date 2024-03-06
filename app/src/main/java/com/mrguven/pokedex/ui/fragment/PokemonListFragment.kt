@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.mrguven.pokedex.R
 import com.mrguven.pokedex.databinding.FragmentPokemonListBinding
 import com.mrguven.pokedex.ui.adapter.PokemonRecyclerAdapter
@@ -55,6 +56,8 @@ class PokemonListFragment : Fragment() {
         viewModel.apply {
             pokemonList.observe(viewLifecycleOwner) {
                 pokemonRecyclerAdapter.updateList(it)
+                val layoutManager = binding.recyclerView.layoutManager as LinearLayoutManager
+                layoutManager.scrollToPositionWithOffset(0, 0)
             }
             loadingState.observe(viewLifecycleOwner) {
                 binding.loadingStateIndicator.visibility = if (it) View.VISIBLE else View.GONE
